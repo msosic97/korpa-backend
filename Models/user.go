@@ -1,0 +1,1 @@
+// tipovi za usera, struct, tipovi za frontend i backend (a ne baza)

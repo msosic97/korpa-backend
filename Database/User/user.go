@@ -1,0 +1,1 @@
+//Logika vezana za usera i bazu 

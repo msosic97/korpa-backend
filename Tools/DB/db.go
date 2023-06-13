@@ -50,3 +50,6 @@ func main() {
 	fmt.Println("Success!")
 
 }
+
+
+// konekcija na bazu
