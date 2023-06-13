@@ -1,0 +1,54 @@
+Client Applications: The client applications serve as the front-end interfaces for users. 
+                     These include a web application for desktop browsers and mobile applications for iOS and Android devices. 
+                     Users can browse restaurants, view menus, place orders, and track their deliveries through these applications.
+
+
+API Gateway: The API gateway acts as a single entry point for client applications to interact with the backend services. 
+             It handles authentication, request routing, rate limiting, and can also perform tasks like request transformation or caching. 
+             It provides a unified interface for the client applications to access various backend services.
+
+
+
+User Service: The user service manages user-related functionalities, such as user registration, authentication, and profile management. 
+              It stores user information, handles password encryption, and generates authentication tokens (e.g., JWT) for secure API communication.
+
+
+
+Restaurant Service: The restaurant service handles operations related to restaurants and menus. 
+                    It allows restaurant owners or administrators to manage their restaurant information, update menus, and handle incoming orders. 
+                    It may also provide functionalities like menu search, filtering, and rating/review management.
+
+
+
+Order Service: The order service handles the entire order process. It manages order creation, updates, and cancellation. 
+               It communicates with the restaurant service to place orders and dispatches delivery requests to the delivery service. 
+               It also handles payment processing and integration with payment gateways.
+
+
+
+Delivery Service: The delivery service manages the delivery process. 
+                  It assigns delivery personnel to orders, tracks their locations, and updates the order status in real-time. 
+                  It may include features like route optimization, estimated delivery time calculation, and notifications 
+                  to customers regarding the delivery status.
+
+
+
+Notification Service: The notification service handles the communication between the application and the users. 
+                      It sends notifications to users regarding order confirmations, status updates, and delivery tracking. 
+                      It can use various communication channels such as email, SMS, or push notifications.
+
+
+
+Payment Service: The payment service handles payment processing and integration with third-party payment gateways. 
+                 It securely manages customer payment information, validates payments, and communicates with the order service 
+                 to confirm successful transactions.
+
+
+Database and Storage: Data storage is an integral part of the application. 
+                      You can use a relational database like PostgreSQL or MySQL to store structured data such as 
+                      user profiles, restaurants, menus, orders, and delivery information. 
+                      For database platform will be used MySQL
+
+
+External Services: The architecture may also integrate with external services, such as geolocation services for determining 
+                    user locations or map services for route optimization and tracking.
