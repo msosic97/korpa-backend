@@ -1,55 +1,43 @@
-package main
+package db
+
+// All configuration for connection on database
 
 import (
 	"database/sql"
 	"fmt"
+	"log"
 
+	"github.com/msosic97/korpa-backend/config"
 	_ "github.com/go-sql-driver/mysql"
 )
 
-func main() {
 
-	//--------------------------------------------------------
+// DSN is a string that contains the necessary information to establish a connection to a specific data source or database.
 
-	db, err := sql.Open("mysql", "root:<b16b>@tcp(127.0.0.1:3306)/test")
+var DB *sql.DB
+
+//  Connection to DB
+func StartDB(config *config.Config) (*sql.DB, error) {
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s",
+		config.DBUser,
+		config.DBPassword,
+		config.DBHost,
+		config.DBPort,
+		config.DBName,
+	)
+
+	db, err := sql.Open("mysql", dsn)
 	if err != nil {
-		// Handle the error
-		panic(err.Error())
+		return nil, fmt.Errorf("error opening database connection: %w", err)
 	}
-	defer db.Close()
 
-	//--------------------------------------------------------
+	err = db.Ping()
+	if err != nil {
+		return nil, fmt.Errorf("error pinging database: %w", err)
+	}
 
-	// err = db.Ping()
-	// if err != nil {
-	//     // Handle the error
-	// 	panic(err.Error())
-	// }
+	log.Println("Successfully connected to the database!")
 
-	// //--------------------------------------------------------
-
-	// rows, err := db.Query("SELECT * FROM table_name")
-	// if err != nil {
-	//     // Handle the error
-	// }
-	// defer rows.Close()
-
-	// for rows.Next() {
-	//     // Process each row of data
-	// }
-
-	// if err = rows.Err(); err != nil {
-	//     // Handle the error
-	// 	panic(err.Error())
-	// }
-
-	// //--------------------------------------------------------
-
-	// Close the connection at the end
-	defer db.Close()
-	fmt.Println("Success!")
-
+	DB = db
+	return db, nil
 }
-
-
-// konekcija na bazu
