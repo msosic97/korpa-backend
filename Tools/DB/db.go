@@ -18,6 +18,23 @@ var DB *sql.DB
 
 //  Connection to DB
 func StartDB(config *config.Config) (*sql.DB, error) {
+
+	if len(config.DBName) == 0 {
+		return nil, fmt.Errorf("no database name provided")
+	}
+	if len(config.DBUser) == 0 {
+		return nil, fmt.Errorf("no user name provided")
+	}
+	if len(config.DBHost) == 0 {
+		return nil, fmt.Errorf("no host provided")
+	}
+	if len(config.DBPassword) == 0 {
+		return nil, fmt.Errorf("no password provided")
+	}
+	if len(config.DBPort) == 0 {
+		return nil, fmt.Errorf("no port provided")
+	}
+
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s",
 		config.DBUser,
 		config.DBPassword,

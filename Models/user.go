@@ -19,7 +19,7 @@ type User struct {
 }
 
 
-type Login struct {
+type LoginRequest struct {
 	ID       int64
 	Username string
 	Password string
@@ -70,7 +70,7 @@ func (u *User) Validate() error {
 
 // Validation for login
 
-func (l *Login) Validate() error {
+func (l *LoginRequest) Validate() error {
 	// Validate ID
 	if l.ID <= 0 {
 		return errors.New("ID must be a positive integer")
