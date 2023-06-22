@@ -12,13 +12,14 @@ import (
 )
 
 
-// DSN is a string that contains the necessary information to establish a connection to a specific data source or database.
+
 
 var DB *sql.DB
 
 //  Connection to DB
 func StartDB(config *config.Config) (*sql.DB, error) {
 
+// Validation
 	if len(config.DBName) == 0 {
 		return nil, fmt.Errorf("no database name provided")
 	}
@@ -35,6 +36,8 @@ func StartDB(config *config.Config) (*sql.DB, error) {
 		return nil, fmt.Errorf("no port provided")
 	}
 
+	
+// DSN is a string that contains the necessary information to establish a connection to a specific data source or database.
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s",
 		config.DBUser,
 		config.DBPassword,

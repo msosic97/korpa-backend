@@ -4,7 +4,10 @@ package main
 
 import (
 	"log"
-	"github.com/msosic97/korpa-backend/Tools/DB"
+	"fmt"
+	"net/http"
+	"github.com/msosic97/korpa-backend/tools/db"
+	"github.com/msosic97/korpa-backend/routes"
 	"github.com/msosic97/korpa-backend/config"
 )
 
@@ -21,5 +24,9 @@ func main() {
 	}
 	// defer keyword is used to delay the execution of a function until the surrounding function completes.
 	defer db.Close()
+
+	r := routes.InitializeRouter()
+	fmt.Print("Server is running on port 8080\n")
+	log.Fatal(http.ListenAndServe(":8080", r))
 
 }

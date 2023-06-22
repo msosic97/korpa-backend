@@ -27,45 +27,52 @@ type LoginRequest struct {
 
 
 // User validation
-func (u *User) Validate() error {
+func (u *User) Validate() bool {
 	// Validate ID
 	if u.ID <= 0 {
-		return errors.New("ID must be a positive integer")
+		// return errors.New("ID must be a positive integer")
+		return false
 	}
 
 	// Validate Username
 	if len(u.Username) < 4 {
-		return errors.New("username must be at least 4 characters long")
+		// return errors.New("username must be at least 4 characters long")
+		return false
 	}
 
 	// Validate Password
 	if len(u.Password) < 4 {
-		return errors.New("password must be at least 8 characters long")
+		// return errors.New("password must be at least 8 characters long")
+		return false
 	}
 
 	// Validate Email
 	emailRegex := regexp.MustCompile(`^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$`)
 	if !emailRegex.MatchString(u.Email) {
-		return errors.New("invalid email address")
+		// return errors.New("invalid email address")
+		return false
 	}
 
 	// Validate FirstName
 	if len(u.FirstName) < 2 {
-		return errors.New("first name must be at least 2 characters long")
+		// return errors.New("first name must be at least 2 characters long")
+		return false
 	}
 
 	// Validate LastName
 	if len(u.LastName) < 2 {
-		return errors.New("last name must be at least 2 characters long")
+		// return errors.New("last name must be at least 2 characters long")
+		return false
 	}
 
 	// Validate Phone
 	phoneRegex := regexp.MustCompile(`^[0-9]+$`)
 	if !phoneRegex.MatchString(u.Phone) {
-		return errors.New("phone number must be a 10-digit number")
+		// return errors.New("phone number must be a 10-digit number")
+		return false
 	}
 
-	return nil
+	return true
 }
 
 // Validation for login
