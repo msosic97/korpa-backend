@@ -1,0 +1,4 @@
+My remider notes
+
+- go get : install package to go.mod
+- go mod tidy : to delete unused dependecies/package
