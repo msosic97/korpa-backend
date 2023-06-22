@@ -35,13 +35,13 @@ func (u *User) Validate() bool {
 	}
 
 	// Validate Username
-	if len(u.Username) < 4 {
+	if len(u.Username) < 4 || len(u.Username) > 20 {
 		// return errors.New("username must be at least 4 characters long")
 		return false
 	}
 
 	// Validate Password
-	if len(u.Password) < 4 {
+	if len(u.Password) < 4 || len(u.Password) > 20{
 		// return errors.New("password must be at least 8 characters long")
 		return false
 	}
@@ -54,13 +54,13 @@ func (u *User) Validate() bool {
 	}
 
 	// Validate FirstName
-	if len(u.FirstName) < 2 {
+	if len(u.FirstName) < 2 || len(u.FirstName) > 15{
 		// return errors.New("first name must be at least 2 characters long")
 		return false
 	}
 
 	// Validate LastName
-	if len(u.LastName) < 2 {
+	if len(u.LastName) < 2 || len(u.LastName) > 25{
 		// return errors.New("last name must be at least 2 characters long")
 		return false
 	}
@@ -90,8 +90,8 @@ func (l *LoginRequest) Validate() error {
 	}
 
 	// Validate Password
-	if len(l.Password) < 4 {
-		return errors.New("password must be at least 8 characters long")
+	if len(l.Password) < 4 || len(l.Password) < 25{
+		return errors.New("password must be at least 4 characters long")
 	}
 
 	return nil
