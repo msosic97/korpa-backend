@@ -16,13 +16,28 @@ import (
 
 var DB *sql.DB
 
+// validateDBName validates the DBName field in the configuration.
+func validateDBName(dbName string) error {
+	if len(dbName) == 0 {
+		return fmt.Errorf("no database name provided")
+	}
+	return nil
+}
+
+
+
 //  Connection to DB
 func StartDB(config *config.Config) (*sql.DB, error) {
 
 // Validation
-	if len(config.DBName) == 0 {
-		return nil, fmt.Errorf("no database name provided")
+	// if len(config.DBName) == 0 {
+	// 	return nil, fmt.Errorf("no database name provided")
+	// }
+
+	if err := validateDBName(config.DBName); err != nil {
+		return nil, err
 	}
+	
 	if len(config.DBUser) == 0 {
 		return nil, fmt.Errorf("no user name provided")
 	}
